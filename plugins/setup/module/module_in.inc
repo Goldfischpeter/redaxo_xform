@@ -9,8 +9,8 @@
 $dbg_sel = new rex_select();
 $dbg_sel->setName('VALUE[7]');
 $dbg_sel->setSize(1);
-$dbg_sel->addOption('inakiv','0');
-$dbg_sel->addOption('Aktiv','1');
+$dbg_sel->addOption('inaktiv','0');
+$dbg_sel->addOption('aktiv','1');
 $dbg_sel->setSelected('REX_VALUE[7]');
 $dbg_sel = $dbg_sel->get();
 
