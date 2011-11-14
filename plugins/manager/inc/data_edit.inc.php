@@ -444,6 +444,35 @@ if($show_editpage) {
 	
 		// ---------- SQL AUFBAUEN
 		$sql = "select * from ".$table["table_name"];
+		
+		
+		
+		//-------------------------------------------------------------------
+		//TABELLENFELDER AUCH NACH PRIO AUSGEBEN
+		
+		$sql_felder = new rex_sql;
+		$sql_felder->debugsql = 0;
+		$sql_felder->setQuery("SELECT * FROM rex_xform_field WHERE table_name='".$table["table_name"]."' ORDER BY prio");
+
+		$felder = '';
+		$max = $sql_felder->getRows();
+		if ($max > 0){
+			for($i=0;$i<$sql_felder->getRows();$i++)
+			{
+				$felder .= $sql_felder->getValue("f1");  
+	
+				if ($i<$max-1) $felder .= ",";
+				$sql_felder->counter++;
+	
+			}	
+	
+			// ---------- SQL AUFBAUEN
+			$sql = "select id,".$felder." from ".$table["table_name"];
+	
+		}
+		
+		
+		
 		if(count($rex_xform_filter)>0)
 		{
 			$where = true;
